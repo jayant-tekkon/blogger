@@ -1,0 +1,61 @@
+<div class="dash-header">
+  <div class="dash-title">
+      <h1>{{pageTitle}}</h1>
+  </div>
+</div>
+<div class="blog-form">
+  <form [formGroup]="blogForm" (ngSubmit)="submitBlogForm()">
+      <div class="form-group form-row">
+          <label class="col-md-3">Category <span class="required">*</span></label>
+          <div class="col-md-9">
+            <select formControlName="category_id" class="form-control">
+              <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+            </select>
+          </div>
+      </div>
+    <div class="form-group form-row">
+        <label class="col-md-3">Title <span class="required">*</span></label>
+        <div class="col-md-9">
+          <input type="text" formControlName="title" class="form-control" placeholder="Title" required>
+        </div>
+    </div>
+    <div class="form-group form-row">
+      <label class="col-md-3">Is Featured</label>
+      <div class="col-md-9">
+        <input type="radio" formControlName="is_featured" value="1" /> Yes
+        <input type="radio" formControlName="is_featured" value="0"/> No
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label class="col-md-3">Is Active</label>
+      <div class="col-md-9">
+        <input type="radio" formControlName="is_active" value="1"/> Yes
+        <input type="radio" formControlName="is_active" value="0" /> No
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label class="col-md-3">Upload Image</label>
+      <div class="col-md-9">
+        <input type="file" id="image" formControlName="image" (change)="uploadImage($event)"/>
+        <div [innerHTML]="uploadError" class="error"></div>
+        <div *ngIf="imagePath">
+          <img [src]="imagePath" width="100px;" height="100px;">
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-row">
+        <label class="col-md-3">Description <span class="required">*</span></label>
+        <div class="col-md-9">
+          <textarea formControlName="description" rows="5" class="form-control" placeholder="Description">
+          </textarea>
+        </div>
+    </div>
+    <div class="form-group form-row">
+        <label class="col-md-3"></label>
+        <div class="col-md-9">
+          <button type="submit" [disabled]="!blogForm.valid" class="btn btn-primary">Save</button>
+          <button routerLink="/admin/blogs" type="button" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+  </form>
+</div>

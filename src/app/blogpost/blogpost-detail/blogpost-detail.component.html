@@ -1,0 +1,25 @@
+<section class="blog-detail mtb-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="blog-left">
+                    <h1>{{blogDetail.title}}</h1>
+                    <div class="posted-on">
+                        <p>by <span>RSGiTECH</span> on <span>{{ blogDetail.created_at | date: 'mediumDate' }}</span></p>
+                    </div>
+                    <div class="detail-img">
+              <img src="{{blogDetail.image}}" alt="{{blogDetail.title}}" width="600" height="500"/>
+                    </div>
+                    <div class="blog-desc" [innerHTML]="blogDetail.description">
+                    </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="blog-right">
+                    <app-blogpost-recent></app-blogpost-recent>                     
+                    <app-categories></app-categories>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
